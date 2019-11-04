@@ -1,9 +1,10 @@
-import { prisma } from "../../../../generated/prisma-client";
+// import { prisma } from "../../../../generated/prisma-client";
 export default {
   Query: {
-    userById: (_, args) => {
+    userById: (_, args, context, info) => {
       const { id } = args;
-      return prisma.user({ id });
+      //   return prisma.user({ id });
+      return context.prisma.query.user({ where: { id } }, info);
     }
   }
 };
